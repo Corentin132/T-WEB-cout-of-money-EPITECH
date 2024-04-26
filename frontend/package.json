@@ -1,0 +1,58 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "lint": "eslint --fix --ext .ts,.tsx ./src",
+    "preview": "vite preview",
+    "prepare": "cd .. && husky install frontend/.husky"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run --prefix ./frontend lint"
+    ]
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
+    "@mui/material": "^5.14.19",
+    "@mui/x-data-grid": "^6.18.5",
+    "@mui/x-data-grid-generator": "^6.18.5",
+    "@types/chart.js": "^2.9.41",
+    "apexcharts": "^3.45.1",
+    "axios": "^1.6.2",
+    "chart.js": "^3.2.0",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "chartjs-chart-financial": "^0.1.1",
+    "date-fns": "^3.1.0",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-cookie": "^6.1.1",
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.21.0",
+    "vite-plugin-svgr": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.3",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.10"
+  }
+}

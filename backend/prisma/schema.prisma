@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// npx prisma migrate dev --name init
+
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  username  String?
+  password  String
+  role      String   @default("user")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cryptoCurrencies CryptoCurrencyUser[]
+}
+
+model CryptoCurrency {
+  id           String   @id @default(uuid())
+  symbol       String   @unique
+  is_default   Boolean  @default(false)
+  is_favorite  Boolean  @default(false)
+  users        CryptoCurrencyUser[]
+}
+
+model CryptoCurrencyUser {
+  user_id     String
+  crypto_id   String
+  is_favorite Boolean @default(false)
+  user        User @relation(fields: [user_id], references: [id])
+  crypto      CryptoCurrency @relation(fields: [crypto_id], references: [id])
+  @@id([user_id, crypto_id])
+}
+
+model Feed {
+  id        Int   @id @default(autoincrement())
+  url       String   @unique
+  name      String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
